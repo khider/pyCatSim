@@ -1,0 +1,12 @@
+# This environment includes all the required packages for this repo including running the test suite.
+name: cat
+channels:
+  - default
+  - conda-forge
+dependencies:
+  - python=3.12.9
+  - pip
+  - pytest
+  - pip:
+    - playsound
+    - '-e .'
