@@ -19,6 +19,7 @@ Notes on how to test:
 '''
 
 import pytest
+import sys
 from pyCatSim import Cat
 
 class TestcatCatInit:
@@ -42,7 +43,6 @@ class TestcatCatInit:
 
 class TestcatCatNoise:
     ''' Test for Cat noise'''
-    
     @pytest.mark.parametrize(('noise','play'),
                              [
                                  ('meow', False),
@@ -52,6 +52,9 @@ class TestcatCatNoise:
                             ]
                             )
     def test_noise_t0(self,noise,play):
+        if sys.platform == "linux" and play is True:
+            pytest.skip("Skipping sound playback test on Linux.")
+
         cat = Cat(name="Boots", color="tabby")
         if play is True:
             cat.make_noise(noise,play)
@@ -61,7 +64,8 @@ class TestcatCatNoise:
                 assert v == 'Meow!'
             elif noise == 'purr':
                 assert v == 'Purrr'
-
+    
+    
     @pytest.mark.xfail
     def test_noise_t1(self, noise='speak'):
         cat = Cat(name="Boots", color="tabby")
