@@ -1,0 +1,24 @@
+# This environment includes all the required packages for this repo including running the test suite.
+name: cat
+version: 2
+sphinx:
+  configuration: docs/conf.py
+channels:
+  - default
+  - conda-forge
+dependencies:
+  - python=3.12.9
+  - pip
+  - pytest
+  - ipykernel
+  - pip:
+    - playsound
+    - git+https://github.com/khider/pyCatSim.git@master
+    - Sphinx
+    - numpydoc>=1.1.0
+    - nbsphinx
+    - IPython
+    - readthedocs-sphinx-search>=0.3.2
+    - sphinx-rtd-theme>=1.0.0
+    - jupyter-sphinx
+    - sphinx-copybutton
