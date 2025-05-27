@@ -2,7 +2,7 @@
 name: cat
 version: 2
 sphinx:
-  configuration: docs/conf.py
+  configuration: docs/source/conf.py
 channels:
   - default
   - conda-forge
