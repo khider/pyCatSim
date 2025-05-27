@@ -3,7 +3,7 @@ name = "pyCatSim"
 version = "2025.05.27"
 description = "A fun, modular, object-oriented Python package for simulating cat behavior"
 readme = "README.md"
-license = { file = "LICENSE" }
+license = { text = "Apache-2.0" }
 authors = [
   { name = "Deborah Khider", email = "khider@usc.edu"}
 ]
