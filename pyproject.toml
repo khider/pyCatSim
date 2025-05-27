@@ -1,6 +1,6 @@
 [project]
 name = "pyCatSim"
-version = "0.0.1"
+version = "2025.05.27"
 description = "A fun, modular, object-oriented Python package for simulating cat behavior"
 readme = "README.md"
 license = { file = "LICENSE" }
