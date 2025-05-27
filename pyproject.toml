@@ -12,6 +12,9 @@ dependencies = [
   "playsound>=1.3.0"
 ]
 
+[tool.setuptools]
+license-files = []
+
 [project.urls]
 Homepage = "https://github.com/khider/pyCatSim"
 Issues = "https://github.com/khider/pyCatSim/issues"
