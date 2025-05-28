@@ -183,6 +183,26 @@ class Cat:
             self.mood += mood_boost
             self.hunger_level += hunger_boost
             self.energy += energy_boost
+
+    def eat(self):
+        """
+        Feeds the cat: decreases hunger_level by 1 and increases mood by 1.
+
+        Effects
+        -------
+        - hunger_level will be reduced by 1 (to a minimum of 0).
+        - mood will be increased by 1.
+        """
+        # Prevent hunger_level from going negative
+        if self.hunger_level > 0:
+            self.hunger_level -= 1
+        else:
+            self.hunger_level = 0
+
+        self.mood += 1
+        # Optionally, return the new state
+        return {"hunger_level": self.hunger_level, "mood": self.mood}
+
                         
         
         
