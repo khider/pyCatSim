@@ -183,6 +183,34 @@ class Cat:
             self.mood += mood_boost
             self.hunger_level += hunger_boost
             self.energy += energy_boost
+
+                        
+    def groom(self):
+            
+            """
+            Grooms the cat.
+        
+            Parameters
+            ----------
+
+        
+            Raises
+            ------
+
+                
+            Examples
+            --------
+            
+            .. jupyter-execute::
+                
+                import pyCatSim as cats
+                nutmeg = cats.Cat(name = 'Nutmeg', age = 3, color = 'tortoiseshell')
+                nutmeg.groom()
+                
+            
+            """
+            self.mood += 1
+            self.health += 1
                         
         
         
