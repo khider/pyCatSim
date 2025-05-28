@@ -60,3 +60,9 @@ class Owner:
 
         self.name = name
         self.cats_owned = cats_owned
+        
+    def groom(self,Cat):
+        
+        Cat.mood += 1
+        
+        
