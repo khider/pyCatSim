@@ -57,4 +57,23 @@ def purr(play=False):
     else:
         playsound(os.path.join(SOUND_DIR, "purr.mp3"))
 
-    
+def hiss(play=False):
+    """
+    Simulates a hiss
+
+    Parameters
+    ----------
+    play : Bool, optional
+        Whether to play the sound (True) or display the text (False). The default is False.
+
+    Returns
+    -------
+    str
+        If play is False, returns the sound as text
+
+    """
+
+    if play is False:
+        return "Hiss.."
+    else:
+        playsound(os.path.join(SOUND_DIR, "hissing.mp3"))
