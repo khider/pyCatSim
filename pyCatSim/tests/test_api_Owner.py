@@ -43,7 +43,6 @@ class TesthumanOwnerInit:
         assert len(owner1.cats_owned) == 2
 
 
-
 class TesthumanOwnerAdopt:
     def test_adopt_t0(self):
         
@@ -61,3 +60,17 @@ class TesthumanOwnerAdopt:
         new_cat=[chestnut,nutmeg]
         owner2.adopt(new_cat)
         assert owner2.cats_owned[-len(new_cat):]==new_cat
+        
+class TesthumanActions:
+    ''' Test for Owner action success '''
+     
+    def test_groom_t0(self):
+         cat1 = Cat(name="Whiskers",mood=7)
+         owner1 = Owner(name="Sasha", cats_owned=cat1)
+         
+         owner1.groom(cat1)
+
+         assert cat1.mood == 8
+   
+        
+     
