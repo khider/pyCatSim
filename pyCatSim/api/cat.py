@@ -212,6 +212,41 @@ class Cat:
             self.hunger_level += hunger_boost
             self.energy += energy_boost
     
+    def eat(self):
+        """
+        Feeds the cat by reducing its hunger level and improving its mood.
+
+        When called:
+        - Decreases `hunger_level` by 1 (to a minimum of 0).
+        - Increases `mood` by 1.
+
+        Returns
+        -------
+        dict
+            A dictionary containing the updated `hunger_level` and `mood`.
+
+        Examples
+        --------
+        .. jupyter-execute::
+
+            import pyCatSim as cats
+            nutmeg = cats.Cat(name='Nutmeg', hunger_level=2, mood=0)
+            nutmeg.eat()
+            # Output: {'hunger_level': 1, 'mood': 1}
+        """
+        # Prevent hunger_level from going negative
+        if self.hunger_level > 0:
+            self.hunger_level -= 1
+        else:
+            self.hunger_level = 0
+
+        self.mood += 1
+        # Optionally, return the new state
+        return {"hunger_level": self.hunger_level, "mood": self.mood}
+
+
+                        
+    
     def sleep(self, duration=0):
         """
         Simulates the cat getting some sleep.

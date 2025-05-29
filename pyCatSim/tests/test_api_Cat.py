@@ -91,6 +91,27 @@ class TestcatCatPlay:
         assert cat.hunger_level == 0
         assert cat.energy == 1  
 
+class TestcatCatEat:
+    ''' Tests for the eat() method in the Cat class '''
+
+    def test_eat_t0(self):
+        """Test that eating decreases hunger and increases mood"""
+        cat = Cat(name="Boots", color="tabby", hunger_level=2, mood=0)
+        result = cat.eat()
+        assert result['hunger_level'] == 1
+        assert result['mood'] == 1
+        assert cat.hunger_level == 1
+        assert cat.mood == 1
+
+    def test_eat_t1(self):
+        """Test that hunger does not go below 0"""
+        cat = Cat(name="Boots", color="tabby", hunger_level=0, mood=5)
+        result = cat.eat()
+        assert result['hunger_level'] == 0  # should not be negative
+        assert result['mood'] == 6
+        assert cat.hunger_level == 0
+        assert cat.mood == 6
+
 class TestcatCatSleep:
     ''' Test for the sleep function '''
     
