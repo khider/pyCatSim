@@ -89,6 +89,19 @@ class TestcatCatPlay:
         
         assert cat.mood == 3
         assert cat.hunger_level == 0
+        assert cat.energy == 1
+		
+class TestcatCatGroom:
+    ''' Test for the groom function'''
+    
+    def test_groom_t0(self):
+        cat=Cat(name="Boots", age=2, color="tabby", mood=2, hunger_level=-1,
+                energy = 2, health = 3)
+        
+        cat.groom()
+        
+        assert cat.health == 4
+        assert cat.mood == 3
         assert cat.energy == 1  
 
 class TestcatCatEat:
