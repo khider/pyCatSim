@@ -190,12 +190,13 @@ class Clowder:
     
     Parameters
     ----------
-    catlist: a list of cats from the Cat class
+    catlist: list 
+        A list of cats from the Cat class
 
     Attributes
     ----------
-    
-    
+    catlist: list 
+        A list of cats from the Cat class
     
     Examples
     --------
@@ -221,7 +222,8 @@ class Clowder:
 
         Parameters:
         -----------
-        cat: the new Cat to add
+        cat: Cat
+            the new Cat to add
 
         Raises
         ------
@@ -240,7 +242,8 @@ class Clowder:
 
         Parameters:
         -----------
-        cat: the Cat to remove
+        cat: Cat
+            the Cat to remove
 
         Raises
         ------
