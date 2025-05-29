@@ -86,7 +86,7 @@ class Cat:
         self.energy = energy
         self.health = health
     
-    def make_noise(self, noise='chirrup', play=False):
+    def make_noise(self, noise='meow', play=False):
         """
         
 
@@ -187,5 +187,5 @@ class Cat:
             self.hunger_level += hunger_boost
             self.energy += energy_boost
                         
-        
+        3
         
