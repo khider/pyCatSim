@@ -26,8 +26,7 @@ class Cat:
 class Owner:
     def __init__(self, name, cats_owned):
         if not isinstance(cats_owned, (Cat, list)):
-            raise TypeError("Must provide Cat or list of Cats")
-            
+            raise TypeError("Must provide Cat or list of Cats")            
         self.name = name
         self.cats_owned = [cats_owned] if isinstance(cats_owned, Cat) else cats_owned
         

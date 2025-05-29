@@ -3,57 +3,6 @@
 """
 The human module controls the behavior of humans around cats
 """
-
-try:
-    from ..api.cat import Cat
-except ImportError:
-    class Cat:
-        """
-        Represents a cat with name, hunger, and mood attributes.
-
-        Parameters
-        ----------
-        name : str
-            The name of the cat.
-
-        Attributes
-        ----------
-        name : str
-            The name of the cat.
-        hunger : int
-            The current hunger level of the cat (lower is better).
-        mood : int
-            The current mood level of the cat (higher is better).
-        """
-        def __init__(self, name):
-            self.name = name
-            self.hunger = 0
-            self.mood = 0
-
-        def play(self):
-            """
-            Play with the cat, increasing its mood by 2 and hunger by 1.
-            """
-            self.mood += 2
-            self.hunger += 1
-
-        def pet(self):
-            """
-            Pet the cat, increasing its mood by 1.
-            """
-            self.mood += 1
-
-        def status(self):
-            """
-            Return a string representing the cat's current status.
-
-            Returns
-            -------
-            str
-                A string describing the cat's name, hunger, and mood.
-            """
-            return f"{self.name}: Hunger={self.hunger}, Mood={self.mood}"
-
 class Owner:
     """
     Represents a cat owner who can care for one or more cats.
@@ -158,24 +107,3 @@ class Owner:
             List of status strings for each owned cat.
         """
         return [cat.status() for cat in self.cats_owned]
-
-# Example test function
-def test_feed():
-    """
-    Unit test for the Owner.feed() method.
-    """
-    kitty = Cat(name="TestCat")
-    kitty.hunger = 2
-    kitty.mood = 5
-
-    owner = Owner(name="TestOwner", cats_owned=kitty)
-    print(f"Before feeding: Hunger={kitty.hunger}, Mood={kitty.mood}")
-    owner.feed(kitty)
-    print(f"After feeding: Hunger={kitty.hunger}, Mood={kitty.mood}")
-
-    assert kitty.hunger == 1, "Hunger should decrease by 1"
-    assert kitty.mood == 6, "Mood should increase by 1"
-    print("test_feed passed!")
-
-if __name__ == "__main__":
-    test_feed()
