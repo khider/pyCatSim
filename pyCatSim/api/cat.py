@@ -245,8 +245,6 @@ class Cat:
         return {"hunger_level": self.hunger_level, "mood": self.mood}
 
 
-                        
-    
     def sleep(self, duration=0):
         """
         Simulates the cat getting some sleep.
@@ -294,5 +292,75 @@ class Cat:
         energy_boost = math.floor(duration/3)
 
         self.energy += energy_boost
+                        
+class Clowder:
+    """
+    Represents a group of cats.
+    
+    Parameters
+    ----------
+    catlist: list 
+        A list of cats from the Cat class
 
+    Attributes
+    ----------
+    catlist: list 
+        A list of cats from the Cat class
+    
+    Examples
+    --------
+    
+    .. jupyter-execute::
+        
+        import pyCatSim as cats
+        group = cats.Clowder(catlist = [list_of_Cats])
+    """
+        
+    def __init__(self, catlist=None):
+        if catlist is None:
+             catlist = []
+        elif not all(isinstance(cat,Cat) for cat in catlist):
+            raise TypeError("All elements of the list must be a Cat object")
+        self.catlist = catlist
+        
+        
+    def add_cat(self, cat):
+     
+        """
+        Adds a Cat to the Clowder
 
+        Parameters:
+        -----------
+        cat: Cat
+            the new Cat to add
+
+        Raises
+        ------
+        TypeError
+            If any of the arguments are not Cat instances.
+        """
+    
+        if not isinstance(cat, Cat):
+                raise TypeError("Only Cat objects can be added.")
+        self.catlist.append(cat)
+    
+    
+    def remove_cat(self,cat):
+        """
+        Removes a Cat from the Clowder
+
+        Parameters:
+        -----------
+        cat: Cat
+            the Cat to remove
+
+        Raises
+        ------
+        ValueError
+            If the Cat is not found in the clowder.
+        """
+        
+        try:
+            self.catlist.remove(cat)
+        except ValueError:
+            raise ValueError("Cat not found in Clowder")
