@@ -41,3 +41,15 @@ class TesthumanOwnerInit:
         assert owner1.name == 'Liam'
         assert type(owner1.cats_owned) is list
         assert len(owner1.cats_owned) == 2
+
+
+class TesthumanOwnerFact:
+    ''' Test for the give_fact function'''
+    
+    def test_give_fact_t0(self):
+        cat1 = Cat(name="Whiskers")
+        owner1 = Owner(name="Sasha", cats_owned=cat1)
+        
+        owner1.give_fact()
+        
+

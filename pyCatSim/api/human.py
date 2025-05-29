@@ -5,6 +5,7 @@ The human module controls the behavior of humans around cats
 """
 
 from ..api.cat import Cat
+from ..utils import facts
 
 class Owner:
     """
@@ -48,6 +49,27 @@ class Owner:
         print([cat.name for cat in owner2.cats_owned])
 
     """
+
+    def give_fact(self):
+        """
+        calls ..utils.random_facts() and return a random fact about cats
+        
+        Returns
+        -------
+        str
+            A fact randomly chosen from a pre-defined fact pool 
+        
+        Examples
+        --------
+        
+        .. jupyter-execute::
+            
+            import pyCatSim as cats
+            nutmeg = cats.Cat(name='Nutmeg', age = 3, color = 'tortoiseshell')
+            nutmeg.give_fact()
+        """ 
+        return facts.random_facts()
+
     def __init__(self, name, cats_owned):
 
         if isinstance(cats_owned, Cat):
