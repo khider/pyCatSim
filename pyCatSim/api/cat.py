@@ -9,6 +9,7 @@ from ..utils import noises
 from ..utils import facts
 
 import difflib
+import math
 
 class Cat:
     
@@ -210,4 +211,53 @@ class Cat:
             self.mood += mood_boost
             self.hunger_level += hunger_boost
             self.energy += energy_boost
+    
+    def sleep(self, duration=0):
+        """
+        Simulates the cat getting some sleep.
+
+        Sleep() causes the cat to sleep for an optionally-specified duration (hrs; default=0).
+        For every 3 hours the cat sleeps, its energy level increases increases by 1 (rounded down
+        to the nearest integer). For example, having the cat sleeping for a duration of 5 hours raises
+        its energy level by 1.
+
+        Parameters
+        ----------
+        duration : int or float, optional
+            Number of hours the cat sleeps. Must be an integer or float. The default is 0.
+
+        Raises
+        ------
+        TypeError
+            If duration is neither an integer nor float.
+        ValueError
+            If duration is not positive or is greater than 16.
+        
+        Examples
+        --------
+        
+        ..jupyter-execute::
+            
+            import pyCatSim as cats
+            nutmeg = cats.Cat(name='Nutmeg', age = 3, color = 'tortoiseshell')
+            nutmeg.sleep(duration=5)
+
+        """
+
+        # Enforce duration type is int or float
+        if type(duration) != int:
+            if type(duration) != float:
+                raise TypeError("duration must be an integer or float")
+
+        # Enforce min (0 hrs) and max duration (16 hrs)
+        if duration < 0:
+            raise ValueError("Cats cannot sleep for negative hours. User-specified duration must be positive")
+        if duration > 16:
+            raise ValueError("Cats should not sleep for more than 16 hours. User-specified duration must be less than 16")
+
+        # Cat gains 1 energy level for every 3 hours of sleep (rounded-down; floor())
+        energy_boost = math.floor(duration/3)
+
+        self.energy += energy_boost
+
 
