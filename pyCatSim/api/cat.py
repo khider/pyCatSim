@@ -190,6 +190,11 @@ class Cat:
         """
         Simulates the cat getting some sleep.
 
+        Sleep() causes the cat to sleep for an optionally-specified duration (hrs; default=0).
+        For every 3 hours the cat sleeps, its energy level increases increases by 1 (rounded down
+        to the nearest integer). For example, having the cat sleeping for a duration of 5 hours raises
+        its energy level by 1.
+
         Parameters
         ----------
         duration : int or float, optional
@@ -213,10 +218,12 @@ class Cat:
 
         """
 
+        # Enforce duration type is int or float
         if type(duration) != int:
             if type(duration) != float:
                 raise TypeError("duration must be an integer or float")
 
+        # Enforce min (0 hrs) and max duration (16 hrs)
         if duration < 0:
             raise ValueError("Cats cannot sleep for negative hours. User-specified duration must be positive")
         if duration > 16:
