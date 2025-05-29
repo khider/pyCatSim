@@ -1,10 +1,10 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-Tests for Cat Class
+Tests for Clowder Class
 """
 
-''' Tests for pyCatSim.api.cat.Cat
+''' Tests for pyCatSim.api.cat.Clowder
 
 Naming rules:
 1. class: Test{filename}{Class}{method} with appropriate camel case
