@@ -211,6 +211,4 @@ class Cat:
             """
             self.mood += 1
             self.health += 1
-                        
-        
-        
+            print(f"{self.name} has been groomed. Health: {self.health}, Mood: {self.mood}")
