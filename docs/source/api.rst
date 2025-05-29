@@ -16,6 +16,12 @@ Cat (pyCatSim.Cat)
 .. autoclass:: pyCatSim.api.cat.Cat
    :members:
 
+Clowder (pyCatSim.Clowder)
+""""""""""""""""""
+
+.. autoclass:: pyCatSim.api.cat.Clowder
+   :members:
+
 Owner (pyCatSim.Owner)
 """"""""""""""""""""""
 
