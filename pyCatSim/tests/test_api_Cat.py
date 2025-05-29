@@ -92,6 +92,15 @@ class TestcatCatPlay:
         assert cat.hunger_level == 0
         assert cat.energy == 1
 
+class TestcatCatBathe:
+    ''' Test for the bathe function '''
+
+    def test_bathe_t0(self):
+        cat = Cat(name="Boots", mood=2, health=4)
+        cat.bathe()
+        assert cat.mood == 1
+        assert cat.health == 5
+
 
 class TestcatCatShow:
     ''' Tests for the Cat.show() method '''
@@ -192,4 +201,3 @@ class TestcatCatFact:
         "The average house cat can run at speeds up to 30 mph.",
         "Cats meow only to communicate with humans."
     ]
-        
