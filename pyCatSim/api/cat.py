@@ -187,5 +187,3 @@ class Cat:
             self.hunger_level += hunger_boost
             self.energy += energy_boost
                         
-        3
-        
