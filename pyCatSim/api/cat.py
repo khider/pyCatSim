@@ -242,7 +242,7 @@ class Cat:
         
     def show(self):
         """
-        
+        Shows a picture of the cat. If the color is not set, shows a random cat. 
 
         Returns
         -------

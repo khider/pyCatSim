@@ -16,8 +16,8 @@ def show(color):
 
     Parameters
     ----------
-    color : TYPE
-        DESCRIPTION. 
+    color : str
+        The color of the cat
 
     Returns
     -------
