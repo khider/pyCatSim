@@ -41,6 +41,25 @@ class TesthumanOwnerInit:
         assert owner1.name == 'Liam'
         assert type(owner1.cats_owned) is list
         assert len(owner1.cats_owned) == 2
+
+
+class TesthumanOwnerAdopt:
+    def test_adopt_t0(self):
+        
+        cat1 = Cat(name="Whiskers")
+        cat2 = Cat(name="Boots", color="tabby")
+        owner1 = Owner(name="Sasha", cats_owned=cat1)
+        owner2 = Owner(name="Liam", cats_owned=[cat1, cat2])
+        chestnut = Cat(name='Chestnut', age = 4, color = 'tabby')
+        nutmeg = Cat(name='Nutmeg', age = 3, color = 'tortoiseshell')
+
+        new_cat=chestnut
+        owner1.adopt(new_cat)
+        assert owner1.cats_owned[-1] == new_cat
+
+        new_cat=[chestnut,nutmeg]
+        owner2.adopt(new_cat)
+        assert owner2.cats_owned[-len(new_cat):]==new_cat
         
 class TesthumanActions:
     ''' Test for Owner action success '''
@@ -54,8 +73,4 @@ class TesthumanActions:
          assert cat1.mood == 8
    
         
-        
-        
-        
-        
-        
+     
