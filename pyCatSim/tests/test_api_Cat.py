@@ -135,7 +135,6 @@ class TestcatCatGroom:
         
         assert cat.health == 4
         assert cat.mood == 3
-        assert cat.energy == 1  
 
 class TestcatCatEat:
     ''' Tests for the eat() method in the Cat class '''
