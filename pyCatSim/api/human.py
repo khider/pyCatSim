@@ -5,10 +5,11 @@ The human module controls the behavior of humans around cats
 """
 
 from ..api.cat import Cat
+from ..utils import facts
 
 class Owner:
     """
-    Represents a cat owner who can care for one or more cats.
+    Represents a cat owner who can care for one or more cats
 
     Parameters
     ----------
@@ -48,6 +49,27 @@ class Owner:
         print([cat.name for cat in owner2.cats_owned])
 
     """
+
+    def give_fact(self):
+        """
+        calls ..utils.random_facts() and return a random fact about cats
+        
+        Returns
+        -------
+        str
+            A fact randomly chosen from a pre-defined fact pool 
+        
+        Examples
+        --------
+        
+        .. jupyter-execute::
+            
+            import pyCatSim as cats
+            nutmeg = cats.Cat(name='Nutmeg', age = 3, color = 'tortoiseshell')
+            nutmeg.give_fact()
+        """ 
+        return facts.random_facts()
+
     def __init__(self, name, cats_owned):
 
         if isinstance(cats_owned, Cat):
@@ -60,3 +82,84 @@ class Owner:
 
         self.name = name
         self.cats_owned = cats_owned
+
+    def adopt(self, cats_object):
+
+        """
+        Add a Cat object or a list of Cat objects to an owner's cats.
+
+        Parameters
+        ----------
+        cats_object: the cat to be added to the list
+
+        Raises
+        ------
+        TypeError
+                If any of the arguments are not Cat.
+        ValueError
+                If cats_object is not Cat.
+
+        Examples
+        --------
+
+        .. jupyter-execute::
+
+            import pyCatSim as cats
+
+            cat1 = cats.Cat(name="Whiskers")
+            cat2 = cats.Cat(name="Boots", color="tabby")
+            owner1 = Owner(name="Sasha", cats_owned=cat1)
+            owner2 = Owner(name="Liam", cats_owned=[cat1, cat2])
+
+            chestnut = cats.Cat(name='Chestnut', age = 4, color = 'tabby')
+            nutmeg = cats.Cat(name='Nutmeg', age = 3, color = 'tortoiseshell')
+            owner1.adopt(owner1,nutmeg)
+            owner2.adopt(owner2,[chestnug,nutmeg])
+
+            print(owner1.name)
+            print([cat.name for cat in owner2.cats_owned])
+
+
+        """
+        if isinstance(cats_object, Cat):
+            self.cats_owned.append(cats_object)
+        elif isinstance(cats_object, list):
+            if not all(isinstance(cat, Cat) for cat in cats_object):
+                raise TypeError("All elements in cats_object must be instances of Cat.")
+            else:
+                self.cats_owned+=cats_object
+        else:
+            raise TypeError("cats_owned must be a Cat instance or a list of Cat instances.")
+
+        
+    def groom(self,Cat):
+        """
+        Simulates an owner grooming one cat, increasing its mood by one
+
+        Parameters
+        ----------
+        Cat : pyCatSim.Cat
+            a pyCatSim.Cat object that you would like to groom.
+
+        Returns
+        -------
+        None.
+
+        
+        Examples
+        --------
+        .. jupyter-execute::
+        
+            from pyCatSim import Cat, Owner
+
+            cat1 = Cat(name="Whiskers")
+
+            Deborah = Owner(name="Deborah", cats_owned=cat1)
+
+            Deborah.groom(cat1)
+
+        """
+        
+        Cat.mood += 1
+        
+        

@@ -6,8 +6,10 @@ The cat module allows to create a Cat or a group of Cats (i.e. a Clowder)
 
 
 from ..utils import noises
+from ..utils import facts
 
 import difflib
+import math
 
 class Cat:
     
@@ -60,6 +62,24 @@ class Cat:
         nutmeg = cats.Cat(name='Nutmeg', age = 3, color = 'tortoiseshell')
     
     """
+
+    def give_fact(self):
+        """
+        calls ..utils.random_facts() and return a random fact about cats
+        
+        Returns
+        -------
+        str
+            A fact randomly chosen from a pre-defined fact pool 
+        --------
+        
+        .. jupyter-execute::
+            
+            import pyCatSim as cats
+            nutmeg = cats.Cat(name='Nutmeg', age = 3, color = 'tortoiseshell')
+            nutmeg.give_fact()
+        """ 
+        return facts.random_facts()
     
     def __init__(self, name, age=None, color=None, mood=0, hunger_level=0, 
                  energy=0, health=0):
@@ -93,7 +113,8 @@ class Cat:
         Parameters
         ----------
         noise : string, optional
-            The sound the cat makes. Valid options include "meow", "purr". The default is 'meow'.
+            The sound the cat makes. Valid options include "meow", "purr", "chirrup", and "hiss". The default is 'meow'.
+
         play : bool, optional
             Whether to play the sound (True) or print out the sound (False). The default is False.
 
@@ -113,6 +134,11 @@ class Cat:
         pyCatSim.utils.noises.meow: Simulates a cat meow
         
         pyCatSim.utils.noises.purr: Simulates a cat purr
+
+        pyCatSim.utils.noises.hiss: Simulates a cat hiss
+        
+        pyCatSim.utils.noises.chirrup: Simulates a cat chirrup
+
         
         Examples
         --------
@@ -127,7 +153,9 @@ class Cat:
         
         noise_func ={
             'meow':noises.meow,
-            'purr':noises.purr}
+            'purr':noises.purr,
+            'hiss':noises.hiss,
+            'chirrup':noises.chirrup}
     
         if noise in noise_func.keys():
             return noise_func[noise](play=play)
@@ -183,6 +211,87 @@ class Cat:
             self.mood += mood_boost
             self.hunger_level += hunger_boost
             self.energy += energy_boost
+    
+    def eat(self):
+        """
+        Feeds the cat by reducing its hunger level and improving its mood.
+
+        When called:
+        - Decreases `hunger_level` by 1 (to a minimum of 0).
+        - Increases `mood` by 1.
+
+        Returns
+        -------
+        dict
+            A dictionary containing the updated `hunger_level` and `mood`.
+
+        Examples
+        --------
+        .. jupyter-execute::
+
+            import pyCatSim as cats
+            nutmeg = cats.Cat(name='Nutmeg', hunger_level=2, mood=0)
+            nutmeg.eat()
+            # Output: {'hunger_level': 1, 'mood': 1}
+        """
+        # Prevent hunger_level from going negative
+        if self.hunger_level > 0:
+            self.hunger_level -= 1
+        else:
+            self.hunger_level = 0
+
+        self.mood += 1
+        # Optionally, return the new state
+        return {"hunger_level": self.hunger_level, "mood": self.mood}
+
+
+    def sleep(self, duration=0):
+        """
+        Simulates the cat getting some sleep.
+
+        Sleep() causes the cat to sleep for an optionally-specified duration (hrs; default=0).
+        For every 3 hours the cat sleeps, its energy level increases increases by 1 (rounded down
+        to the nearest integer). For example, having the cat sleeping for a duration of 5 hours raises
+        its energy level by 1.
+
+        Parameters
+        ----------
+        duration : int or float, optional
+            Number of hours the cat sleeps. Must be an integer or float. The default is 0.
+
+        Raises
+        ------
+        TypeError
+            If duration is neither an integer nor float.
+        ValueError
+            If duration is not positive or is greater than 16.
+        
+        Examples
+        --------
+        
+        ..jupyter-execute::
+            
+            import pyCatSim as cats
+            nutmeg = cats.Cat(name='Nutmeg', age = 3, color = 'tortoiseshell')
+            nutmeg.sleep(duration=5)
+
+        """
+
+        # Enforce duration type is int or float
+        if type(duration) != int:
+            if type(duration) != float:
+                raise TypeError("duration must be an integer or float")
+
+        # Enforce min (0 hrs) and max duration (16 hrs)
+        if duration < 0:
+            raise ValueError("Cats cannot sleep for negative hours. User-specified duration must be positive")
+        if duration > 16:
+            raise ValueError("Cats should not sleep for more than 16 hours. User-specified duration must be less than 16")
+
+        # Cat gains 1 energy level for every 3 hours of sleep (rounded-down; floor())
+        energy_boost = math.floor(duration/3)
+
+        self.energy += energy_boost
                         
 class Clowder:
     """
@@ -255,8 +364,3 @@ class Clowder:
             self.catlist.remove(cat)
         except ValueError:
             raise ValueError("Cat not found in Clowder")
-         
-    
-
-             
-    
