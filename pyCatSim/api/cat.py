@@ -8,6 +8,7 @@ The cat module allows to create a Cat or a group of Cats (i.e. a Clowder)
 from ..utils import noises
 
 import difflib
+import math
 
 class Cat:
     
