@@ -83,3 +83,24 @@ class TestcatCatPlay:
         assert cat.mood == 3
         assert cat.hunger_level == 0
         assert cat.energy == 1  
+
+class TestcatCatSleep:
+    ''' Test for the sleep function '''
+    
+    @pytest.mark.parametrize(('duration'),
+                             [
+                                 (0),
+                                 (1),
+                                 (4.4),
+                                 pytest.param("kitty", marks=pytest.mark.xfail),
+                                 pytest.param(-1, marks=pytest.mark.xfail),
+                                 pytest.param(17, marks=pytest.mark.xfail)
+                                 ]
+                             )
+    def test_sleep_t0(self, duration):
+        cat = Cat(name="Boots", color="tabby")
+
+        cat.sleep(duration)
+        
+        if duration < 3:
+            assert cat.energy == 0
