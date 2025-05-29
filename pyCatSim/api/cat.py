@@ -6,6 +6,11 @@ The cat module allows to create a Cat or a group of Cats (i.e. a Clowder)
 
 
 from ..utils import noises
+from ..utils import display
+import random
+
+
+
 
 import difflib
 
@@ -183,6 +188,26 @@ class Cat:
             self.mood += mood_boost
             self.hunger_level += hunger_boost
             self.energy += energy_boost
-                        
+        
+    def show(self):
+        """
+        
+
+        Returns
+        -------
+        None.
+
+        """
+        
+        possible_colors = ['tabby', 'black', 'orange', 'tortoiseshell', 'tuxedo']
+        
+        try:
+            display.show(self.color)
+        except:        
+            color = random.choice(possible_colors)
+            display.show(color)
+        
+        
+        
         
         
