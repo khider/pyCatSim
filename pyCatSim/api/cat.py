@@ -8,6 +8,7 @@ The cat module allows to create a Cat or a group of Cats (i.e. a Clowder)
 from ..utils import noises
 
 import difflib
+import random
 
 class Cat:
     
@@ -93,7 +94,7 @@ class Cat:
         Parameters
         ----------
         noise : string, optional
-            The sound the cat makes. Valid options include "meow", "purr". The default is 'meow'.
+            The sound the cat makes. Valid options include "meow", "purr", and "random". The default is 'meow'. If input is "random", a random noise will play.
         play : bool, optional
             Whether to play the sound (True) or print out the sound (False). The default is False.
 
@@ -128,7 +129,8 @@ class Cat:
         noise_func ={
             'meow':noises.meow,
             'purr':noises.purr}
-    
+        if noise == 'random':
+            noise = random.choice(list(noise_func.keys()))    
         if noise in noise_func.keys():
             return noise_func[noise](play=play)
         else:
