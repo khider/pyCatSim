@@ -8,7 +8,7 @@ from ..api.cat import Cat
 
 class Owner:
     """
-    Represents a cat owner who can care for one or more cats.
+    Represents a cat owner who can care for one or more cats
 
     Parameters
     ----------
@@ -64,14 +64,7 @@ class Owner:
     def adopt(self, cats_object):
 
         """
-        2025.05.28 by Yan Pan
-        Simulate a cat being adopted!
-
-        In the Owner class in human.py, add a function adopt(Cat) that adds the Cat object to the list of cats
-
-        Write docstrings for this function, including a minimal example
-
-        Write a test
+        Add a Cat object or a list of Cat objects to an owner's cats.
 
         Parameters
         ----------
