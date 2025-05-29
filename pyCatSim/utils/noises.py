@@ -75,6 +75,6 @@ def chatter(play=False):
     """
     
     if play is False:
-        return "Chattering"
+        return "Chatter"
     else:
         playsound(os.path.join(SOUND_DIR, "chattering.mp3"))
