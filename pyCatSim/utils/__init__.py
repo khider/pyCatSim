@@ -5,4 +5,5 @@ Contains all basic block functions for pyCatSim.
 """
 
 from .noises import *
+from .display import *
 from .facts import *

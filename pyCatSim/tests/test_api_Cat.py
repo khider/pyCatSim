@@ -21,6 +21,7 @@ Notes on how to test:
 import pytest
 import sys
 from pyCatSim import Cat
+from PIL import Image
 
 class TestcatCatInit:
     ''' Test for Cat instantiation '''
@@ -99,6 +100,29 @@ class TestcatCatBathe:
         cat.bathe()
         assert cat.mood == 1
         assert cat.health == 5
+
+
+class TestcatCatShow:
+    ''' Tests for the Cat.show() method '''
+
+    def test_show_no_color_returns_image(self):
+        """ test that show() returns an image when color is None (random) """
+        cat = Cat(name="Boots", color=None)
+        img = cat.show()
+        assert isinstance(img, Image.Image)  # PIL image check
+
+    @pytest.mark.parametrize("color", ['tabby', 'black', 'orange', 'tortoiseshell', 'tuxedo'])  # Example colors
+    def test_show_with_color_returns_image(self, color):
+        """ test that show() returns an image for specified color """
+        cat = Cat(name="Boots", color=color)
+        img = cat.show()
+        assert isinstance(img, Image.Image)
+
+    def test_show_invalid_color_raises(self):
+        """ test that show() raises ValueError for invalid color """
+        cat = Cat(name="Boots", color="invalid_color")
+        with pytest.raises(ValueError):
+            cat.show()  
 		
 class TestcatCatGroom:
     ''' Test for the groom function'''

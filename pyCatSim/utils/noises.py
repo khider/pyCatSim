@@ -12,6 +12,9 @@ __all__=['meow',
 from playsound import playsound
 import os
 from pathlib import Path 
+import random
+import matplotlib.pyplot as plt
+import matplotlib.image as mpimg
 
 # Path to the sound files
 SOUND_DIR = Path(__file__).parents[1].joinpath("sounds").resolve()
