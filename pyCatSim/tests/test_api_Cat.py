@@ -48,7 +48,9 @@ class TestcatCatNoise:
                                  ('meow', False),
                                  ('meow', True),
                                  ('purr', False),
-                                 ('purr', True)
+                                 ('purr', True),
+                                 ('random', False),
+                                 ('random', True)
                             ]
                             )
     def test_noise_t0(self,noise,play):
@@ -64,6 +66,8 @@ class TestcatCatNoise:
                 assert v == 'Meow!'
             elif noise == 'purr':
                 assert v == 'Purrr'
+            elif noise == 'random':
+                assert v in ['Meow!', 'Purrr', 'Chirrup', 'Hiss']
     
     
     @pytest.mark.xfail
