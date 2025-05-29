@@ -244,8 +244,6 @@ class Clowder:
 
         Raises
         ------
-        TypeError
-            If any of the arguments are not Cat instances.
         ValueError
             If the Cat is not found in the clowder.
         """
