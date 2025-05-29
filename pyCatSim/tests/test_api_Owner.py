@@ -41,3 +41,21 @@ class TesthumanOwnerInit:
         assert owner1.name == 'Liam'
         assert type(owner1.cats_owned) is list
         assert len(owner1.cats_owned) == 2
+        
+class TesthumanActions:
+    ''' Test for Owner action success '''
+     
+    def test_groom_t0(self):
+         cat1 = Cat(name="Whiskers",mood=7)
+         owner1 = Owner(name="Sasha", cats_owned=cat1)
+         
+         owner1.groom(cat1)
+
+         assert cat1.mood == 8
+   
+        
+        
+        
+        
+        
+        
