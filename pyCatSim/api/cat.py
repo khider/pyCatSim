@@ -6,6 +6,7 @@ The cat module allows to create a Cat or a group of Cats (i.e. a Clowder)
 
 
 from ..utils import noises
+from ..utils import facts
 
 import difflib
 import math
@@ -61,6 +62,24 @@ class Cat:
         nutmeg = cats.Cat(name='Nutmeg', age = 3, color = 'tortoiseshell')
     
     """
+
+    def give_fact(self):
+        """
+        calls ..utils.random_facts() and return a random fact about cats
+        
+        Returns
+        -------
+        str
+            A fact randomly chosen from a pre-defined fact pool 
+        --------
+        
+        .. jupyter-execute::
+            
+            import pyCatSim as cats
+            nutmeg = cats.Cat(name='Nutmeg', age = 3, color = 'tortoiseshell')
+            nutmeg.give_fact()
+        """ 
+        return facts.random_facts()
     
     def __init__(self, name, age=None, color=None, mood=0, hunger_level=0, 
                  energy=0, health=0):
@@ -240,4 +259,5 @@ class Cat:
         energy_boost = math.floor(duration/3)
 
         self.energy += energy_boost
+
 
