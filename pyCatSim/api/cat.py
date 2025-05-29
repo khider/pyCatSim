@@ -93,7 +93,7 @@ class Cat:
         Parameters
         ----------
         noise : string, optional
-            The sound the cat makes. Valid options include "meow", "purr". The default is 'meow'.
+            The sound the cat makes. Valid options include "meow", "purr", "chirrup". The default is 'meow'.
         play : bool, optional
             Whether to play the sound (True) or print out the sound (False). The default is False.
 
@@ -113,6 +113,8 @@ class Cat:
         pyCatSim.utils.noises.meow: Simulates a cat meow
         
         pyCatSim.utils.noises.purr: Simulates a cat purr
+
+        pyCatSim.utils.noises.chirrup: Simulates a cat chirrup
         
         Examples
         --------
@@ -127,7 +129,8 @@ class Cat:
         
         noise_func ={
             'meow':noises.meow,
-            'purr':noises.purr}
+            'purr':noises.purr,
+            'chirrup':noises.chirrup}
     
         if noise in noise_func.keys():
             return noise_func[noise](play=play)
@@ -184,5 +187,3 @@ class Cat:
             self.hunger_level += hunger_boost
             self.energy += energy_boost
                         
-        
-        
