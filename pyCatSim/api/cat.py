@@ -183,6 +183,45 @@ class Cat:
             self.mood += mood_boost
             self.hunger_level += hunger_boost
             self.energy += energy_boost
-                        
+
+    
+    def sleep(self, duration=0):
+        """
+        Simulates the cat getting some sleep.
+
+        Parameters
+        ----------
+        duration : int or float, optional
+            Number of hours the cat sleeps. Must be an integer or float. The default is 0.
+
+        Raises
+        ------
+        TypeError
+            If duration is neither an integer nor float.
+        ValueError
+            If duration is not positive or is greater than 16.
         
+        Examples
+        --------
         
+        ..jupyter-execute::
+            
+            import pyCatSim as cats
+            nutmeg = cats.Cat(name='Nutmeg', age = 3, color = 'tortoiseshell')
+            nutmeg.sleep(duration=5)
+
+        """
+
+        if type(duration) != int:
+            if type(duration) != float:
+                raise TypeError("duration must be an integer or float")
+
+        if duration < 0:
+            raise ValueError("Cats cannot sleep for negative hours. User-specified duration must be positive")
+        if duration > 16:
+            raise ValueError("Cats should not sleep for more than 16 hours. User-specified duration must be less than 16")
+
+        # Cat gains 1 energy level for every 3 hours of sleep (rounded-down; floor())
+        energy_boost = math.floor(duration/3)
+
+        self.energy += energy_boost
