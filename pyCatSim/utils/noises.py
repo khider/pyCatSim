@@ -6,7 +6,8 @@ This module contains possible sounds cats can make
 
 
 __all__=['meow',
-         'purr']
+         'purr',
+         'chirrup']
 
 from playsound import playsound
 import os
@@ -57,9 +58,10 @@ def purr(play=False):
     else:
         playsound(os.path.join(SOUND_DIR, "purr.mp3"))
 
-def hiss(play=False):
+
+def chirrup(play=False):
     """
-    Simulates a hiss
+    Simulates a chirrup
 
     Parameters
     ----------
@@ -72,8 +74,18 @@ def hiss(play=False):
         If play is False, returns the sound as text
 
     """
+    if play is False:
+        return "Chirrup"
+    else:
+        playsound(os.path.join(SOUND_DIR, "chirrup.mp3"))
 
+def hiss(play=False):
+    """
+    Simulates a hiss
+    """
     if play is False:
         return "Hiss.."
     else:
         playsound(os.path.join(SOUND_DIR, "hissing.mp3"))
+    
+
