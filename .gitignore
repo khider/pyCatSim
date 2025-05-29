@@ -1,1 +1,3 @@
 .DS_Store
+/pyCatSim/__pycache__
+/pyCatSim/api/__pycache__
