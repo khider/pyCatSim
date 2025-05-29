@@ -49,6 +49,8 @@ class TestcatCatNoise:
                                  ('meow', True),
                                  ('purr', False),
                                  ('purr', True),
+                                 ('hiss', False),
+                                 ('hiss', True),
                                  ('chirrup', False),
                                  ('chirrup', True)
                             ]
@@ -66,6 +68,8 @@ class TestcatCatNoise:
                 assert v == 'Meow!'
             elif noise == 'purr':
                 assert v == 'Purrr'
+            elif noise == 'hiss':
+                assert v == 'Hiss..'
             elif noise == 'chirrup':
                 assert v == 'Chirrup'
     

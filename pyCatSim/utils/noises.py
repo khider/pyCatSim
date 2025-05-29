@@ -58,6 +58,7 @@ def purr(play=False):
     else:
         playsound(os.path.join(SOUND_DIR, "purr.mp3"))
 
+
 def chirrup(play=False):
     """
     Simulates a chirrup
@@ -73,10 +74,18 @@ def chirrup(play=False):
         If play is False, returns the sound as text
 
     """
-    
     if play is False:
         return "Chirrup"
     else:
         playsound(os.path.join(SOUND_DIR, "chirrup.mp3"))
 
+def hiss(play=False):
+    """
+    Simulates a hiss
+    """
+    if play is False:
+        return "Hiss.."
+    else:
+        playsound(os.path.join(SOUND_DIR, "hissing.mp3"))
     
+
