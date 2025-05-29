@@ -60,3 +60,35 @@ class Owner:
 
         self.name = name
         self.cats_owned = cats_owned
+        
+    def groom(self,Cat):
+        """
+        Simulates an owner grooming one cat, increasing its mood by one
+
+        Parameters
+        ----------
+        Cat : pyCatSim.Cat
+            a pyCatSim.Cat object that you would like to groom.
+
+        Returns
+        -------
+        None.
+
+        
+        Examples
+        --------
+        .. jupyter-execute::
+        
+            from pyCatSim import Cat, Owner
+
+            cat1 = Cat(name="Whiskers")
+
+            Deborah = Owner(name="Deborah", cats_owned=cat1)
+
+            Deborah.groom(cat1)
+
+        """
+        
+        Cat.mood += 1
+        
+        
