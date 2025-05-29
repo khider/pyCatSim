@@ -82,4 +82,13 @@ class TestcatCatPlay:
         
         assert cat.mood == 3
         assert cat.hunger_level == 0
-        assert cat.energy == 1  
+        assert cat.energy == 1
+
+class TestcatCatBathe:
+    ''' Test for the bathe function '''
+
+    def test_bathe_t0(self):
+        cat = Cat(name="Boots", mood=2, health=4)
+        cat.bathe()
+        assert cat.mood == 1
+        assert cat.health == 5

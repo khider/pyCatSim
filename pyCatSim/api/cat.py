@@ -183,6 +183,32 @@ class Cat:
             self.mood += mood_boost
             self.hunger_level += hunger_boost
             self.energy += energy_boost
+            
+    def bathe(self):
+        """
+        Bathes the cat, decreasing mood and improving health.
+
+        Cats typically dislike baths, which lowers their mood,
+        but it improves their cleanliness and boosts health.
+
+        Effects
+        -------
+        - mood: decreases by 1
+        - health: increases by 1
+
+        Examples
+        --------
+        .. jupyter-execute::
+
+            import pyCatSim as cats
+            mochi = cats.Cat(name='Mochi', mood=3, health=5)
+            mochi.bathe()
+            print(mochi.mood)   # Output: 2
+            print(mochi.health) # Output: 6
+        """
+        self.mood -= 1
+        self.health += 1
+
                         
         
         
