@@ -188,16 +188,9 @@ class Cat:
     def groom(self):
             
             """
-            Grooms the cat.
+            Grooms a cat, increasing its health and mood levels by one unit.
         
-            Parameters
-            ----------
-
-        
-            Raises
-            ------
-
-                
+            
             Examples
             --------
             
