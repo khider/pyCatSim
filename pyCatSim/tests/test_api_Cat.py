@@ -82,4 +82,4 @@ class TestcatCatPlay:
         
         assert cat.mood == 3
         assert cat.hunger_level == 0
-        assert cat.energy == 1  
+        assert cat.energy == 1

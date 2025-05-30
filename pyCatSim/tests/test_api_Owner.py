@@ -4,120 +4,90 @@
 Tests for Owner Class
 """
 
+''' Tests for pyCatSim.api.human.Owner
+
+Naming rules:
+1. class: Test{filename}{Class}{method} with appropriate camel case
+2. function: test_{method}_t{test_id}
+Notes on how to test:
+0. Make sure [pytest](https://docs.pytest.org) has been installed: `pip install pytest`
+1. execute `pytest {directory_path}` in terminal to perform all tests in all testing files inside the specified directory
+2. execute `pytest {file_path}` in terminal to perform all tests in the specified file
+3. execute `pytest {file_path}::{TestClass}::{test_method}` in terminal to perform a specific test class/method inside the specified file
+4. after `pip install pytest-xdist`, one may execute "pytest -n 4" to test in parallel with number of workers specified by `-n`
+5. for more details, see https://docs.pytest.org/en/stable/usage.html
+'''
+
 import pytest
-
-class Cat:
-    def __init__(self, name, color="gray"):
-        self.name = name
-        self.color = color
-        self.hunger = 0
-        self.mood = 0
-
-    def play(self):
-        self.mood += 2
-        self.hunger += 1
-
-    def pet(self):
-        self.mood += 1
-
-    def status(self):
-        return f"{self.name}: Hunger={self.hunger}, Mood={self.mood}"
-
-class Owner:
-    def __init__(self, name, cats_owned):
-        if not isinstance(cats_owned, (Cat, list)):
-            raise TypeError("Must provide Cat or list of Cats")            
-        self.name = name
-        self.cats_owned = [cats_owned] if isinstance(cats_owned, Cat) else cats_owned
-        
-        # Validate all are Cat instances
-        for cat in self.cats_owned:
-            if not isinstance(cat, Cat):
-                raise TypeError("All cats must be Cat instances")
-
-    def feed(self, cat):
-        if cat not in self.cats_owned:
-            raise ValueError("Unowned cat")
-        cat.hunger = max(0, cat.hunger - 1)
-        cat.mood += 1
-
-    def play_with(self, cat):
-        if cat not in self.cats_owned:
-            raise ValueError("Unowned cat")
-        cat.play()
-
-    def pet(self, cat):
-        if cat not in self.cats_owned:
-            raise ValueError("Unowned cat")
-        cat.pet()
-
-    def list_cats(self):
-        return [cat.status() for cat in self.cats_owned]
-
-@pytest.fixture
-def sample_cat():
-    return Cat(name="Whiskers")
-
-@pytest.fixture
-def sample_owner(sample_cat):
-    return Owner(name="Alice", cats_owned=sample_cat)
+import pyCatSim as cat
 
 class TesthumanOwnerInit:
+    ''' Test for Owner instantiation '''
+     
     def test_init_t0(self):
-        cat1 = Cat(name="Whiskers")
-        owner1 = Owner(name="S1", cats_owned=cat1)
-        assert owner1.name == 'S1'
-        assert isinstance(owner1.cats_owned, list)
-        assert len(owner1.cats_owned) == 1
+         cat1 = cat.Cat(name="Whiskers")
+         owner1 = cat.Owner(name="Sasha", cats_owned=cat1)
 
+         assert owner1.name == 'Sasha'
+         assert type(owner1.cats_owned) is list
+         assert len(owner1.cats_owned) == 1
+    
     def test_init_t1(self):
-        cat1 = Cat(name="Whiskers")
-        cat2 = Cat(name="Boots", color="tabby")
-        owner1 = Owner(name="L1", cats_owned=[cat1, cat2])
-        assert owner1.name == 'L1'
-        assert isinstance(owner1.cats_owned, list)
+        cat1 = cat.Cat(name="Whiskers")
+        cat2 = cat.Cat(name="Boots", color="tabby")
+        # Multiple cats
+        owner1 = cat.Owner(name="Liam", cats_owned=[cat1, cat2])
+
+        assert owner1.name == 'Liam'
+        assert type(owner1.cats_owned) is list
         assert len(owner1.cats_owned) == 2
 
-def test_owner_initialization_single_cat(sample_cat):
-    owner = Owner(name="Bob", cats_owned=sample_cat)
-    assert owner.name == "Bob"
-    assert len(owner.cats_owned) == 1
 
-def test_owner_initialization_multiple_cats():
-    cats = [Cat(name="Fluffy"), Cat(name="Mittens")]
-    owner = Owner(name="Carol", cats_owned=cats)
-    assert len(owner.cats_owned) == 2
+class TesthumanOwnerFact:
+    ''' Test for the give_fact function'''
+    
+    def test_give_fact_t0(self):
+        cat1 = cat.Cat(name="Whiskers")
+        owner1 = cat.Owner(name="Sasha", cats_owned=cat1)
+        # Test that the fact is given correctly
+        owner1.give_fact()
 
-def test_feed_cat(sample_owner, sample_cat):
-    sample_cat.hunger = 5
-    sample_owner.feed(sample_cat)
-    assert sample_cat.hunger == 4
 
-def test_feed_cat_min_hunger(sample_owner, sample_cat):
-    sample_cat.hunger = 0
-    sample_owner.feed(sample_cat)
-    assert sample_cat.hunger == 0
+class TesthumanOwnerAdopt:
+    def test_adopt_t0(self):
+        cat1 = cat.Cat(name="Whiskers")
+        cat2 = cat.Cat(name="Boots", color="tabby")
+        owner1 = cat.Owner(name="Sasha", cats_owned=cat1)
+        owner2 = cat.Owner(name="Liam", cats_owned=[cat1, cat2])
+        chestnut = cat.Cat(name='Chestnut', age=4, color='tabby')
+        nutmeg = cat.Cat(name='Nutmeg', age=3, color='tortoiseshell')
 
-def test_feed_unowned_cat(sample_owner):
-    stray_cat = Cat(name="Stray")
-    with pytest.raises(ValueError):
-        sample_owner.feed(stray_cat)
+        new_cat = chestnut
+        owner1.adopt(new_cat)
+        assert owner1.cats_owned[-1] == new_cat
 
-def test_play_with_cat(sample_owner, sample_cat):
-    sample_owner.play_with(sample_cat)
-    assert sample_cat.mood == 2
-    assert sample_cat.hunger == 1
+        new_cat = [chestnut, nutmeg]
+        owner2.adopt(new_cat)
+        assert owner2.cats_owned[-len(new_cat):] == new_cat
 
-def test_pet_cat(sample_owner, sample_cat):
-    sample_owner.pet(sample_cat)
-    assert sample_cat.mood == 1
 
-def test_list_cats(sample_owner, sample_cat):
-    sample_cat.hunger = 1
-    sample_cat.mood = 4
-    statuses = sample_owner.list_cats()
-    assert statuses == ["Whiskers: Hunger=1, Mood=4"]
+class TesthumanActions:
+    ''' Test for Owner action success '''
+     
+    def test_groom_t0(self):
+        cat1 = cat.Cat(name="Whiskers", mood=7)
+        owner1 = cat.Owner(name="Sasha", cats_owned=cat1)
+         
+        owner1.groom(cat1)
+        assert cat1.mood == 8
 
-def test_invalid_cat_type():
-    with pytest.raises(TypeError):
-        Owner(name="Dave", cats_owned="Invalid")
+class TesthumanOwnerFeed:
+    def test_feed_t0(self):
+        """
+        Test that feeding a cat decreases hunger_level by 1 and increases mood by 1.
+        """
+        test_cat = cat.Cat(name="Fluffy", hunger_level=5, mood=4)
+        test_owner = cat.Owner(name="Jordan", cats_owned=test_cat)
+        test_owner.feed(test_cat)
+        assert test_cat.hunger_level == 4
+        assert test_cat.mood == 5

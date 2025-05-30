@@ -3,6 +3,8 @@
 """
 The human module controls the behavior of humans around cats
 """
+from pyCatSim.api.cat import Cat
+
 class Owner:
     """
     Represents a cat owner who can care for one or more cats.
@@ -71,14 +73,14 @@ class Owner:
         ValueError
             If the specified cat is not owned by this owner.
         AttributeError
-            If the cat does not have 'hunger' or 'mood' attributes.
+            If the cat does not have 'hunger_level' or 'mood' attributes.
         """
         if cat not in self.cats_owned:
             raise ValueError("This owner does not own the specified cat.")
-        if not hasattr(cat, 'hunger') or not hasattr(cat, 'mood'):
-            raise AttributeError("Cat must have 'hunger' and 'mood' attributes.")
+        if not hasattr(cat, 'hunger_level') or not hasattr(cat, 'mood'):
+            raise AttributeError("Cat must have 'hunger_level' and 'mood' attributes.")
 
-        cat.hunger = max(0, cat.hunger - 1)
+        cat.hunger_level = max(0, cat.hunger_level - 1)
         cat.mood += 1
 
     def play_with(self, cat):
@@ -107,3 +109,20 @@ class Owner:
             List of status strings for each owned cat.
         """
         return [cat.status() for cat in self.cats_owned]
+    
+    def give_fact(self):
+        """Give a cat fact."""
+        print("Cats are amazing!")
+
+    def adopt(self, new_cats):
+        """Adopt one or more new cats."""
+        if isinstance(new_cats, list):
+            self.cats_owned.extend(new_cats)
+        else:
+            self.cats_owned.append(new_cats)
+
+    def groom(self, cat):
+        """Groom a cat, increasing its mood."""
+        if cat not in self.cats_owned:
+            raise ValueError("This owner does not own the specified cat.")
+        cat.mood += 1
