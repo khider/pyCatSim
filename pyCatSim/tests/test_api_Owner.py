@@ -53,6 +53,7 @@ class TesthumanOwnerFact:
         owner1.give_fact()
 
 
+
 class TesthumanOwnerAdopt:
     def test_adopt_t0(self):
         cat1 = cat.Cat(name="Whiskers")
@@ -69,9 +70,27 @@ class TesthumanOwnerAdopt:
         new_cat = [chestnut, nutmeg]
         owner2.adopt(new_cat)
         assert owner2.cats_owned[-len(new_cat):] == new_cat
+        
 
+class TesthumanOwnerAdopt:
+    def test_adopt_t0(self):
+        
+        cat1 = Cat(name="Whiskers")
+        cat2 = Cat(name="Boots", color="tabby")
+        owner1 = Owner(name="Sasha", cats_owned=cat1)
+        owner2 = Owner(name="Liam", cats_owned=[cat1, cat2])
+        chestnut = Cat(name='Chestnut', age = 4, color = 'tabby')
+        nutmeg = Cat(name='Nutmeg', age = 3, color = 'tortoiseshell')
 
-class TesthumanActions:
+        new_cat=chestnut
+        owner1.adopt(new_cat)
+        assert owner1.cats_owned[-1] == new_cat
+
+        new_cat=[chestnut,nutmeg]
+        owner2.adopt(new_cat)
+        assert owner2.cats_owned[-len(new_cat):]==new_cat
+
+class TesthumanGroom:
     ''' Test for Owner action success '''
      
     def test_groom_t0(self):
