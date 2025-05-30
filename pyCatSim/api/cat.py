@@ -137,6 +137,8 @@ class Cat:
         
         pyCatSim.utils.noises.purr: Simulates a cat purr
 
+        pyCatSim.utils.noises.chatter: Simulates a cat chatter
+        
         pyCatSim.utils.noises.hiss: Simulates a cat hiss
         
         pyCatSim.utils.noises.chirrup: Simulates a cat chirrup
@@ -156,6 +158,7 @@ class Cat:
         noise_func ={
             'meow':noises.meow,
             'purr':noises.purr,
+            'chatter':noises.chatter,
             'hiss':noises.hiss,
             'chirrup':noises.chirrup}
     
