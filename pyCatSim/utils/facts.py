@@ -12,15 +12,6 @@ def random_facts():
     str
         A fact randomly chosen from a pre-defined fact pool 
 
-    Examples
-    --------
-    
-    .. jupyter-execute::
-        
-        import pyCatSim as cats
-        nutmeg = cats.Cat(name='Nutmeg', age = 3, color = 'tortoiseshell')
-        nutmeg.give_fact()
-
     """
 
     cat_facts = [

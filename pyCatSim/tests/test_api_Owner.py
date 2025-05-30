@@ -19,24 +19,24 @@ Notes on how to test:
 '''
 
 import pytest
-import pyCatSim as cat
+import pyCatSim as cats
 
 class TesthumanOwnerInit:
     ''' Test for Owner instantiation '''
      
     def test_init_t0(self):
-         cat1 = cat.Cat(name="Whiskers")
-         owner1 = cat.Owner(name="Sasha", cats_owned=cat1)
+         cat1 = cats.Cat(name="Whiskers")
+         owner1 = cats.Owner(name="Sasha", cats_owned=cat1)
 
          assert owner1.name == 'Sasha'
          assert type(owner1.cats_owned) is list
          assert len(owner1.cats_owned) == 1
     
     def test_init_t1(self):
-        cat1 = cat.Cat(name="Whiskers")
-        cat2 = cat.Cat(name="Boots", color="tabby")
+        cat1 = cats.Cat(name="Whiskers")
+        cat2 = cats.Cat(name="Boots", color="tabby")
         # Multiple cats
-        owner1 = cat.Owner(name="Liam", cats_owned=[cat1, cat2])
+        owner1 = cats.Owner(name="Liam", cats_owned=[cat1, cat2])
 
         assert owner1.name == 'Liam'
         assert type(owner1.cats_owned) is list
@@ -47,8 +47,8 @@ class TesthumanOwnerFact:
     ''' Test for the give_fact function'''
     
     def test_give_fact_t0(self):
-        cat1 = cat.Cat(name="Whiskers")
-        owner1 = cat.Owner(name="Sasha", cats_owned=cat1)
+        cat1 = cats.Cat(name="Whiskers")
+        owner1 = cats.Owner(name="Sasha", cats_owned=cat1)
         # Test that the fact is given correctly
         owner1.give_fact()
 
@@ -56,12 +56,12 @@ class TesthumanOwnerFact:
 
 class TesthumanOwnerAdopt:
     def test_adopt_t0(self):
-        cat1 = cat.Cat(name="Whiskers")
-        cat2 = cat.Cat(name="Boots", color="tabby")
-        owner1 = cat.Owner(name="Sasha", cats_owned=cat1)
-        owner2 = cat.Owner(name="Liam", cats_owned=[cat1, cat2])
-        chestnut = cat.Cat(name='Chestnut', age=4, color='tabby')
-        nutmeg = cat.Cat(name='Nutmeg', age=3, color='tortoiseshell')
+        cat1 = cats.Cat(name="Whiskers")
+        cat2 = cats.Cat(name="Boots", color="tabby")
+        owner1 = cats.Owner(name="Sasha", cats_owned=cat1)
+        owner2 = cats.Owner(name="Liam", cats_owned=[cat1, cat2])
+        chestnut = cats.Cat(name='Chestnut', age=4, color='tabby')
+        nutmeg = cats.Cat(name='Nutmeg', age=3, color='tortoiseshell')
 
         new_cat = chestnut
         owner1.adopt(new_cat)
@@ -72,30 +72,12 @@ class TesthumanOwnerAdopt:
         assert owner2.cats_owned[-len(new_cat):] == new_cat
         
 
-class TesthumanOwnerAdopt:
-    def test_adopt_t0(self):
-        
-        cat1 = Cat(name="Whiskers")
-        cat2 = Cat(name="Boots", color="tabby")
-        owner1 = Owner(name="Sasha", cats_owned=cat1)
-        owner2 = Owner(name="Liam", cats_owned=[cat1, cat2])
-        chestnut = Cat(name='Chestnut', age = 4, color = 'tabby')
-        nutmeg = Cat(name='Nutmeg', age = 3, color = 'tortoiseshell')
-
-        new_cat=chestnut
-        owner1.adopt(new_cat)
-        assert owner1.cats_owned[-1] == new_cat
-
-        new_cat=[chestnut,nutmeg]
-        owner2.adopt(new_cat)
-        assert owner2.cats_owned[-len(new_cat):]==new_cat
-
 class TesthumanGroom:
     ''' Test for Owner action success '''
      
     def test_groom_t0(self):
-        cat1 = cat.Cat(name="Whiskers", mood=7)
-        owner1 = cat.Owner(name="Sasha", cats_owned=cat1)
+        cat1 = cats.Cat(name="Whiskers", mood=7)
+        owner1 = cats.Owner(name="Sasha", cats_owned=cat1)
          
         owner1.groom(cat1)
         assert cat1.mood == 8
@@ -105,8 +87,8 @@ class TesthumanOwnerFeed:
         """
         Test that feeding a cat decreases hunger_level by 1 and increases mood by 1.
         """
-        test_cat = cat.Cat(name="Fluffy", hunger_level=5, mood=4)
-        test_owner = cat.Owner(name="Jordan", cats_owned=test_cat)
+        test_cat = cats.Cat(name="Fluffy", hunger_level=5, mood=4)
+        test_owner = cats.Owner(name="Jordan", cats_owned=test_cat)
         test_owner.feed(test_cat)
         assert test_cat.hunger_level == 4
         assert test_cat.mood == 5

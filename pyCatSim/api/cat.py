@@ -65,23 +65,6 @@ class Cat:
     
     """
 
-    def give_fact(self):
-        """
-        calls ..utils.random_facts() and return a random fact about cats
-        
-        Returns
-        -------
-        str
-            A fact randomly chosen from a pre-defined fact pool 
-        --------
-        
-        .. jupyter-execute::
-            
-            import pyCatSim as cats
-            nutmeg = cats.Cat(name='Nutmeg', age = 3, color = 'tortoiseshell')
-            nutmeg.give_fact()
-        """ 
-        return facts.random_facts()
     
     def __init__(self, name, age=None, color=None, mood=0, hunger_level=0, 
                  energy=0, health=0):
@@ -107,6 +90,24 @@ class Cat:
         self.hunger_level = hunger_level
         self.energy = energy
         self.health = health
+    
+    def give_fact(self):
+        """
+        calls ..utils.random_facts() and return a random fact about cats
+        
+        Returns
+        -------
+        str
+            A fact randomly chosen from a pre-defined fact pool 
+        --------
+        
+        .. jupyter-execute::
+            
+            import pyCatSim as cats
+            nutmeg = cats.Cat(name='Nutmeg', age = 3, color = 'tortoiseshell')
+            nutmeg.give_fact()
+        """ 
+        return facts.random_facts()
     
     def make_noise(self, noise='meow', play=False):
         """
@@ -152,6 +153,12 @@ class Cat:
             import pyCatSim as cats
             nutmeg = cats.Cat(name='Nutmeg', age = 3, color = 'tortoiseshell')
             nutmeg.make_noise()
+        
+        .. jupyter-execute::
+            
+            import pyCatSim as cats
+            nutmeg = cats.Cat(name='Nutmeg', age = 3, color = 'tortoiseshell')
+            nutmeg.make_noise(noise='hiss')
 
         """
         
@@ -221,13 +228,9 @@ class Cat:
         """
         Bathes the cat, decreasing mood and improving health.
 
-        Cats typically dislike baths, which lowers their mood,
-        but it improves their cleanliness and boosts health.
+        Cats typically dislike baths, which lowers their mood by 1,
+        but it improves their cleanliness and boosts health by 1.
 
-        Effects
-        -------
-        - mood: decreases by 1
-        - health: increases by 1
 
         Examples
         --------
@@ -238,6 +241,7 @@ class Cat:
             mochi.bathe()
             print(mochi.mood)   # Output: 2
             print(mochi.health) # Output: 6
+            
         """
         self.mood -= 1
         self.health += 1
@@ -250,6 +254,14 @@ class Cat:
         Returns
         -------
         None.
+        
+        Examples
+        --------
+        .. jupyter-execute::
+
+            import pyCatSim as cats
+            mochi = cats.Cat(name='Mochi', color = 'black')
+            mochi.show()
 
         """
         
@@ -264,24 +276,24 @@ class Cat:
                         
     def groom(self):
             
-            """
-            Grooms a cat, increasing its health and mood levels by one unit.
+        """
+        Grooms a cat, increasing its health and mood levels by one unit.
+    
         
+        Examples
+        --------
+        
+        .. jupyter-execute::
             
-            Examples
-            --------
+            import pyCatSim as cats
+            nutmeg = cats.Cat(name = 'Nutmeg', age = 3, color = 'tortoiseshell')
+            nutmeg.groom()
             
-            .. jupyter-execute::
-                
-                import pyCatSim as cats
-                nutmeg = cats.Cat(name = 'Nutmeg', age = 3, color = 'tortoiseshell')
-                nutmeg.groom()
-                
-            
-            """
-            self.mood += 1
-            self.health += 1
-            print(f"{self.name} has been groomed. Health: {self.health}, Mood: {self.mood}")
+        
+        """
+        self.mood += 1
+        self.health += 1
+        #print(f"{self.name} has been groomed. Health: {self.health}, Mood: {self.mood}")
     
     def eat(self):
         """
@@ -298,6 +310,7 @@ class Cat:
 
         Examples
         --------
+        
         .. jupyter-execute::
 
             import pyCatSim as cats

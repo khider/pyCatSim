@@ -21,7 +21,6 @@ Notes on how to test:
 import pytest
 import sys
 from pyCatSim import Cat
-from PIL import Image
 
 class TestcatCatInit:
     ''' Test for Cat instantiation '''

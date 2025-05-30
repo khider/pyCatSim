@@ -51,9 +51,24 @@ class Owner:
 
     """
 
+
+    def __init__(self, name, cats_owned):
+        
+        
+        if isinstance(cats_owned, Cat):
+            cats_owned = [cats_owned]
+        elif isinstance(cats_owned, list):
+            if not all(isinstance(cat, Cat) for cat in cats_owned):
+                raise TypeError("All elements in cats_owned must be instances of Cat.")
+        else:
+            raise TypeError("cats_owned must be a Cat instance or a list of Cat instances.")
+
+        self.name = name
+        self.cats_owned = cats_owned
+    
     def give_fact(self):
         """
-        calls ..utils.random_facts() and return a random fact about cats
+        Gives a random fact about cats
         
         Returns
         -------
@@ -71,21 +86,9 @@ class Owner:
         """ 
         return facts.random_facts()
 
-    def __init__(self, name, cats_owned):
-        if isinstance(cats_owned, Cat):
-            cats_owned = [cats_owned]
-        elif isinstance(cats_owned, list):
-            if not all(isinstance(cat, Cat) for cat in cats_owned):
-                raise TypeError("All elements in cats_owned must be instances of Cat.")
-        else:
-            raise TypeError("cats_owned must be a Cat instance or a list of Cat instances.")
-
-        self.name = name
-        self.cats_owned = cats_owned
-
     def feed(self, cat):
         """
-        Feed the specified cat owned by this Owner.
+        Feed the specified cat owned by this Owner. Decreases `hunger_level` by 1 and Increases `mood` by 1.
 
         Parameters
         ----------
@@ -98,6 +101,16 @@ class Owner:
             If the specified cat is not owned by this owner.
         AttributeError
             If the cat does not have 'hunger_level' or 'mood' attributes.
+            
+        
+        ..jupyter-execute::
+            
+            import pyCatSim as cats
+            nutmeg = cats.Cat(name='Nutmeg', age = 3, color = 'tortoiseshell')
+            john = cats.Owner(name='John', cats_owned = nutmeg)
+            john.feed(nutmeg)
+    
+            
         """
         if cat not in self.cats_owned:
             raise ValueError("This owner does not own the specified cat.")
@@ -175,11 +188,8 @@ class Owner:
         .. jupyter-execute::
         
             from pyCatSim import Cat, Owner
-
             cat1 = Cat(name="Whiskers")
-
             Deborah = Owner(name="Deborah", cats_owned=cat1)
-
             Deborah.groom(cat1)
 
         """
