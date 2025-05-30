@@ -7,6 +7,7 @@ The human module controls the behavior of humans around cats
 from ..api.cat import Cat
 from ..utils import facts
 
+
 class Owner:
     """
     Represents a cat owner who can care for one or more cats
@@ -71,7 +72,6 @@ class Owner:
         return facts.random_facts()
 
     def __init__(self, name, cats_owned):
-
         if isinstance(cats_owned, Cat):
             cats_owned = [cats_owned]
         elif isinstance(cats_owned, list):
@@ -82,6 +82,30 @@ class Owner:
 
         self.name = name
         self.cats_owned = cats_owned
+
+    def feed(self, cat):
+        """
+        Feed the specified cat owned by this Owner.
+
+        Parameters
+        ----------
+        cat : Cat
+            The cat to feed. Must be owned by this owner.
+
+        Raises
+        ------
+        ValueError
+            If the specified cat is not owned by this owner.
+        AttributeError
+            If the cat does not have 'hunger_level' or 'mood' attributes.
+        """
+        if cat not in self.cats_owned:
+            raise ValueError("This owner does not own the specified cat.")
+        if not hasattr(cat, 'hunger_level') or not hasattr(cat, 'mood'):
+            raise AttributeError("Cat must have 'hunger_level' and 'mood' attributes.")
+
+        cat.hunger_level = max(0, cat.hunger_level - 1)
+        cat.mood += 1
 
     def adopt(self, cats_object):
 
@@ -161,5 +185,4 @@ class Owner:
         """
         
         Cat.mood += 1
-        
-        
+ 
