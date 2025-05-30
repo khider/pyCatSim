@@ -17,9 +17,9 @@ Cat (pyCatSim.Cat)
    :members:
 
 Clowder (pyCatSim.Clowder)
-""""""""""""""""""
+""""""""""""""""""""""""""
 
-.. autoclass:: pyCatSim.api.cat.Clowder
+.. autoclass:: pyCatSim.api.clowder.Clowder
    :members:
 
 Owner (pyCatSim.Owner)

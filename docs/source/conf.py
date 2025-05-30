@@ -50,7 +50,7 @@ source_suffix = '.rst'
 templates_path = ['_templates']
 exclude_patterns = []
 
-autosummary_generate = True
+#autosummary_generate = True
 numpydoc_show_class_members = True
 
 # -- Options for HTML output -------------------------------------------------

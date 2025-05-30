@@ -19,7 +19,6 @@ Notes on how to test:
 '''
 
 import pytest
-import sys
 from pyCatSim import Cat,Clowder
 
 class TestcatClowderInit:

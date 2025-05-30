@@ -92,7 +92,7 @@ class Owner:
 
         Parameters
         ----------
-        cat : Cat
+        cat : pyCatSim.Cat
             The cat to feed. Must be owned by this owner.
 
         Raises
@@ -120,14 +120,15 @@ class Owner:
         cat.hunger_level = max(0, cat.hunger_level - 1)
         cat.mood += 1
 
-    def adopt(self, cats_object):
+    def adopt(self, cats):
 
         """
         Add a Cat object or a list of Cat objects to an owner's cats.
 
         Parameters
         ----------
-        cats_object: the cat to be added to the list
+        cats: pyCatSim.Cat or list
+            the cat(s) to be added to the list
 
         Raises
         ------
@@ -145,26 +146,25 @@ class Owner:
 
             cat1 = cats.Cat(name="Whiskers")
             cat2 = cats.Cat(name="Boots", color="tabby")
-            owner1 = Owner(name="Sasha", cats_owned=cat1)
-            owner2 = Owner(name="Liam", cats_owned=[cat1, cat2])
+            owner1 = cats.Owner(name="Sasha", cats_owned=cat1)
+            owner2 = cats.Owner(name="Liam", cats_owned=[cat1, cat2])
 
             chestnut = cats.Cat(name='Chestnut', age = 4, color = 'tabby')
             nutmeg = cats.Cat(name='Nutmeg', age = 3, color = 'tortoiseshell')
-            owner1.adopt(owner1,nutmeg)
-            owner2.adopt(owner2,[chestnug,nutmeg])
+            owner1.adopt(nutmeg)
+            owner2.adopt([chestnut,nutmeg])
 
-            print(owner1.name)
             print([cat.name for cat in owner2.cats_owned])
 
 
         """
-        if isinstance(cats_object, Cat):
-            self.cats_owned.append(cats_object)
-        elif isinstance(cats_object, list):
-            if not all(isinstance(cat, Cat) for cat in cats_object):
+        if isinstance(cats, Cat):
+            self.cats_owned.append(cats)
+        elif isinstance(cats, list):
+            if not all(isinstance(cat, Cat) for cat in cats):
                 raise TypeError("All elements in cats_object must be instances of Cat.")
             else:
-                self.cats_owned+=cats_object
+                self.cats_owned+=cats
         else:
             raise TypeError("cats_owned must be a Cat instance or a list of Cat instances.")
 
@@ -176,7 +176,7 @@ class Owner:
         Parameters
         ----------
         Cat : pyCatSim.Cat
-            a pyCatSim.Cat object that you would like to groom.
+            a Cat object that you would like to groom.
 
         Returns
         -------

@@ -93,12 +93,14 @@ class Cat:
     
     def give_fact(self):
         """
-        calls ..utils.random_facts() and return a random fact about cats
+        Gives a random fact about cats
         
         Returns
         -------
         str
             A fact randomly chosen from a pre-defined fact pool 
+            
+        Examples    
         --------
         
         .. jupyter-execute::
@@ -111,7 +113,7 @@ class Cat:
     
     def make_noise(self, noise='meow', play=False):
         """
-        
+        Have the cat make a noise
 
         Parameters
         ----------
@@ -177,52 +179,52 @@ class Cat:
         
     def play(self, mood_boost=1, hunger_boost=1, energy_boost=-1):
             
-            """
-            Simulates playtime with the cat.
-        
-            Parameters
-            ----------
-            mood_boost : int, optional
-                How much mood improves from play. Must be an integer. Default is 1.
-            hunger_boost : int, optional
-                How much hunger increases from play. Must be a positive integer. Default is 1.
-            energy_boost : int, optional
-                How much energy decreases from play. Must be a negative integer. Default is -1.
-        
-            Raises
-            ------
-            TypeError
-                If any of the arguments are not integers.
-            ValueError
-                If hunger_boost is not positive or energy_boost is not negative.
-                
-            Examples
-            --------
+        """
+        Simulates playtime with the cat.
+    
+        Parameters
+        ----------
+        mood_boost : int, optional
+            How much mood improves from play. Must be an integer. Default is 1.
+        hunger_boost : int, optional
+            How much hunger increases from play. Must be a positive integer. Default is 1.
+        energy_boost : int, optional
+            How much energy decreases from play. Must be a negative integer. Default is -1.
+    
+        Raises
+        ------
+        TypeError
+            If any of the arguments are not integers.
+        ValueError
+            If hunger_boost is not positive or energy_boost is not negative.
             
-            .. jupyter-execute::
-                
-                import pyCatSim as cats
-                nutmeg = cats.Cat(name='Nutmeg', age = 3, color = 'tortoiseshell')
-                nutmeg.play()
-                
+        Examples
+        --------
+        
+        .. jupyter-execute::
             
-            """
-            for arg_name, arg_value in {
-                "mood_boost": mood_boost,
-                "hunger_boost": hunger_boost,
-                "energy_boost": energy_boost
-            }.items():
-                if not isinstance(arg_value, int):
-                    raise TypeError(f"{arg_name} must be an integer.")
+            import pyCatSim as cats
+            nutmeg = cats.Cat(name='Nutmeg', age = 3, color = 'tortoiseshell')
+            nutmeg.play()
+            
         
-            if hunger_boost <= 0:
-                raise ValueError("Cats always get hungry when playing! hunger_boost must be positive.")
-            if energy_boost >= 0:
-                raise ValueError("Cats always get tired when playing! energy_boost must be negative.")
-        
-            self.mood += mood_boost
-            self.hunger_level += hunger_boost
-            self.energy += energy_boost
+        """
+        for arg_name, arg_value in {
+            "mood_boost": mood_boost,
+            "hunger_boost": hunger_boost,
+            "energy_boost": energy_boost
+        }.items():
+            if not isinstance(arg_value, int):
+                raise TypeError(f"{arg_name} must be an integer.")
+    
+        if hunger_boost <= 0:
+            raise ValueError("Cats always get hungry when playing! hunger_boost must be positive.")
+        if energy_boost >= 0:
+            raise ValueError("Cats always get tired when playing! energy_boost must be negative.")
+    
+        self.mood += mood_boost
+        self.hunger_level += hunger_boost
+        self.energy += energy_boost
             
     def bathe(self):
         """
@@ -376,75 +378,3 @@ class Cat:
         energy_boost = math.floor(duration/3)
 
         self.energy += energy_boost
-                        
-class Clowder:
-    """
-    Represents a group of cats.
-    
-    Parameters
-    ----------
-    catlist: list 
-        A list of cats from the Cat class
-
-    Attributes
-    ----------
-    catlist: list 
-        A list of cats from the Cat class
-    
-    Examples
-    --------
-    
-    .. jupyter-execute::
-        
-        import pyCatSim as cats
-        group = cats.Clowder(catlist = [list_of_Cats])
-    """
-        
-    def __init__(self, catlist=None):
-        if catlist is None:
-             catlist = []
-        elif not all(isinstance(cat,Cat) for cat in catlist):
-            raise TypeError("All elements of the list must be a Cat object")
-        self.catlist = catlist
-        
-        
-    def add_cat(self, cat):
-     
-        """
-        Adds a Cat to the Clowder
-
-        Parameters:
-        -----------
-        cat: Cat
-            the new Cat to add
-
-        Raises
-        ------
-        TypeError
-            If any of the arguments are not Cat instances.
-        """
-    
-        if not isinstance(cat, Cat):
-                raise TypeError("Only Cat objects can be added.")
-        self.catlist.append(cat)
-    
-    
-    def remove_cat(self,cat):
-        """
-        Removes a Cat from the Clowder
-
-        Parameters:
-        -----------
-        cat: Cat
-            the Cat to remove
-
-        Raises
-        ------
-        ValueError
-            If the Cat is not found in the clowder.
-        """
-        
-        try:
-            self.catlist.remove(cat)
-        except ValueError:
-            raise ValueError("Cat not found in Clowder")
