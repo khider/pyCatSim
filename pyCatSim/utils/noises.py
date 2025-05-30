@@ -8,7 +8,8 @@ This module contains possible sounds cats can make
 __all__=['meow',
          'purr',
          'chatter',
-         'chirrup']
+         'chirrup',
+         'hiss']
 
 from playsound import playsound
 import os
@@ -78,7 +79,7 @@ def chatter(play=False):
     """
     
     if play is False:
-        return "Chatter"
+        return "chattering"
     else:
         playsound(os.path.join(SOUND_DIR, "chattering.mp3"))
 

@@ -72,7 +72,7 @@ class TestcatCatNoise:
             elif noise == 'purr':
                 assert v == 'Purrr'
             elif noise == 'chatter':
-                assert v == 'Chattering'
+                assert v == 'chattering'
             elif noise == 'hiss':
                 assert v == 'Hiss..'
             elif noise == 'chirrup':
