@@ -134,7 +134,7 @@ class Cat:
         if noise in noise_func.keys():
             return noise_func[noise](play=play)
         else:
-            raise ValueError(f"Invalid noise '{noise}'. Valid options: {', '.join(noise_func.keys())}")
+            raise ValueError(f"Invalid noise '{noise}'. Valid options: {', '.join(noise_func.keys()), "random"}")
         
         
     def play(self, mood_boost=1, hunger_boost=1, energy_boost=-1):

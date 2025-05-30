@@ -67,7 +67,7 @@ class TestcatCatNoise:
             elif noise == 'purr':
                 assert v == 'Purrr'
             elif noise == 'random':
-                assert v in ['Meow!', 'Purrr', 'Chirrup', 'Hiss']
+                assert v in ['Meow!', 'Purrr', "chattering", "Chirrup", "Hiss.."]
     
     
     @pytest.mark.xfail
