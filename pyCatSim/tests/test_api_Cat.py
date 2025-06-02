@@ -162,7 +162,7 @@ class TestcatCatSleep:
                              [
                                  (0),
                                  (1),
-                                 (4.4),
+                                 (14.4),
                                  pytest.param("kitty", marks=pytest.mark.xfail),
                                  pytest.param(-1, marks=pytest.mark.xfail),
                                  pytest.param(17, marks=pytest.mark.xfail)
@@ -175,7 +175,8 @@ class TestcatCatSleep:
         
         if duration < 3:
             assert cat.energy == 0
-
+		if (duration >= 12) and (duration < 15):
+			assert cat.energy == 4
 
 class TestcatCatFact:
     ''' Test for the give_fact function'''
