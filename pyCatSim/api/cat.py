@@ -331,7 +331,7 @@ class Cat:
         return {"hunger_level": self.hunger_level, "mood": self.mood}
 
 
-    def sleep(self, duration=0):
+    def sleep(self, duration):
         """
         Simulates the cat getting some sleep.
 
@@ -342,7 +342,7 @@ class Cat:
 
         Parameters
         ----------
-        duration : int or float, optional
+        duration : int or float
             Number of hours the cat sleeps. Must be an integer or float. The default is 0.
 
         Raises
@@ -355,7 +355,7 @@ class Cat:
         Examples
         --------
         
-        ..jupyter-execute::
+        .. jupyter-execute::
             
             import pyCatSim as cats
             nutmeg = cats.Cat(name='Nutmeg', age = 3, color = 'tortoiseshell')
