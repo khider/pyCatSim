@@ -175,6 +175,7 @@ class TestcatCatSleep:
         
         if duration < 3:
             assert cat.energy == 0
+	
 		if (duration >= 12) and (duration < 15):
 			assert cat.energy == 4
 
