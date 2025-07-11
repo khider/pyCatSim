@@ -1,4 +1,4 @@
-cff-version: 0.0.1.2
+cff-version: 0.0.2.0
 message: "If you use this software, please cite it as below."
 authors:
   - family-names: "Khider"
@@ -6,7 +6,7 @@ authors:
     orcid: "https://orcid.org/0000-0001-7501-8430"
 
 title: "PyCatSim: A fun, modular, object-oriented Python package for simulating cat behavior"
-version: v2025.05.27
-date-released: 2025-05-27
+version: v2025.07.11
+date-released: 2025-07-11
 doi: 10.5281/zenodo.15530612
 url: "https://github.com/khider/pyCatSim"
