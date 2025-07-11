@@ -14,6 +14,9 @@ dependencies = [
 ]
 
 [tool.setuptools]
+packages = ["pyCatSim"]
+
+[tool.setuptools]
 license-files = []
 
 [project.urls]
